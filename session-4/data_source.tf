@@ -13,3 +13,5 @@ data "aws_ami" "amazon_linux_2" {
   }
 
 }
+
+#Fetch the data from an existing resource, data can be any attribute that resource.
