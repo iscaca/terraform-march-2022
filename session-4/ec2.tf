@@ -9,3 +9,4 @@ resource "aws_instance" "my_ec2" {
 
 # Combine static and dynamic values together "${var.env}"
 # Name = dev-app-instance
+# Name = format("%s-app-instance", var.env)   %s = string       %d = number
