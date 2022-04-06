@@ -1,13 +1,13 @@
 variable "tag" {
     type = string
     description = "This variable represents Vpc Name"
-    default = my_own_vpc
+    default = "my_own_vpc"
 }
 
 variable "tenancy"{
     type = string
     description = "This is for Tenancy situation"
-    default = default
+    default = "default"
 }
 
 variable "cidr_block"{
