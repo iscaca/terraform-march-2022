@@ -59,7 +59,6 @@ resource "aws_nat_gateway" "my_nat_gateway" {
   tags = {
     Name = "my_nat_gateway"
     Environment = "dev"
-    depends_on =[aws_internet_gateway.my_internet_gateway]
   }
 }
 
