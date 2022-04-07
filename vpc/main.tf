@@ -18,4 +18,5 @@ resource "aws_instance" "main_ec2"{
     subnet_id = aws_subnet.public_subnet_1a.id
     associate_public_ip_address = true
     vpc_security_group_ids = [aws_security_group.my_sg1.id]
+    key_name = aws_key_pair.terraform_server_key.key_name 
 }
