@@ -32,14 +32,4 @@ variable "availability_zones" {
     default = ["us-east-1a", "us-east-1b", "us-east-1c",]
 }
 
-variable "aws_route_table_association"{
-    type = list(string)
-    description = "This is list of public subnets"
-    default = ["public_subnet_1a", "public_subnet_1b", "public_subnet_1c"]
-}
 
-variable "aws_route_table_association"{
-    type = list(string)
-    description = "This is list of public subnets"
-    default = ["private_subnet_1a", "private_subnet_1b", "private_subnet_1c"]
-}
