@@ -1,5 +1,5 @@
 # Public Subnets
-
+ # count
 resource "aws_subnet" "public_subnet_1a" {
   vpc_id     = aws_vpc.my_own_vpc.id
   cidr_block = var.cidr_block_pub[0]
