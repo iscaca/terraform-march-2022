@@ -1,78 +1,113 @@
+# Vpc
+
 resource "aws_vpc" "my_own_vpc" {
-  cidr_block = var.cidr_block[0]
-  instance_tenancy = var.tenancy
+  cidr_block = var.vpc_cidr_block
+  instance_tenancy = "default"
     tags = {
-        Name = var.tag
+        Name = "my_own_vpc"
+        Environment = "dev"
     }
 }
 
+# Internet Gateway
+
+resource "aws_internet_gateway" "my_internet_gateway" {
+  vpc_id = aws_vpc.my_own_vpc.id
+
+  tags = {
+    Name = "my_internet_gateway"
+    Environment = "dev"
+  }
+}
+
+# Public Route Table
+
 resource "aws_route_table" "public_route_table" {
   vpc_id = aws_vpc.my_own_vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.my_internet_gateway.id
+  }
   tags = {
-    Name = var.tagging_route_tables[0]
+    Name = "Public_Route_Table"
+    Environment = "dev"
   }
 }
 
-resource "aws_subnet" "Public_Subnet_1a" {
-  vpc_id     = aws_vpc.my_own_vpc.id
-  cidr_block = var.cidr_block[1]
-  availability_zone = var.availability_zones[0]
-  tags = {
-    Name = var.tagging_subnets_public[0]
-  }
-}
-
-resource "aws_subnet" "Public_Subnet_1b" {
-  vpc_id     = aws_vpc.my_own_vpc.id
-  cidr_block = var.cidr_block[2]
-  availability_zone = var.availability_zones[1]
-  tags = {
-    Name = var.tagging_subnets_public[1]
-  }
-}
-
-resource "aws_subnet" "Public_Subnet_1c" {
-  vpc_id     = aws_vpc.my_own_vpc.id
-  cidr_block = var.cidr_block[3]
-  availability_zone = var.availability_zones[2]
-  tags = {
-    Name = var.tagging_subnets_public[2]
-  }
-}
+# Private Route Table
 
 resource "aws_route_table" "private_route_table" {
   vpc_id = aws_vpc.my_own_vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.my_nat_gateway.id
+  }
   tags = {
-    Name = var.tagging_route_tables[1]
+    Name = "Private_Route_Table"
+    Environment = "dev"
   }
 }
 
-resource "aws_subnet" "Private_Subnet_1a" {
-  vpc_id     = aws_vpc.my_own_vpc.id
-  cidr_block = var.cidr_block[4]
-  availability_zone = var.availability_zones[3]
+# Nat Gateway
+
+resource "aws_nat_gateway" "my_nat_gateway" {
+  allocation_id = aws_eip.nat_gw_eip.id
+  subnet_id     = aws_subnet.Public_Subnet_1a.id
+
   tags = {
-    Name = var.tagging_subnets_private[0]
+    Name = "my_nat_gateway"
+    Environment = "dev"
+    depends_on =[aws_internet_gateway.my_internet_gateway]
   }
 }
 
-resource "aws_subnet" "Private_Subnet_1b" {
-  vpc_id     = aws_vpc.my_own_vpc.id
-  cidr_block = var.cidr_block[5]
-  availability_zone = var.availability_zones[4]
+# Elactic IP
+
+resource "aws_eip" "nat_gw_eip" {
+  vpc      = true
   tags = {
-    Name = var.tagging_subnets_private[1]
+    Name = "nat_gw_eip"
+    Environment= "dev"
   }
 }
 
-resource "aws_subnet" "Private_Subnet_1c" {
-  vpc_id     = aws_vpc.my_own_vpc.id
-  cidr_block = var.cidr_block[6]
-  availability_zone = var.availability_zones[5]
-  tags = {
-    Name = var.tagging_subnets_private[2]
-  }
-}
+# Public Route Table Associations
+
+ resource "aws_route_table_association" "public_subnet_1a" {
+    subnet_id = aws_subnet.public_subnet_1a.id
+    route_table_id = aws_route_table.public_route_table.id
+ }
+
+ resource "aws_route_table_association" "public_subnet_1b" {
+    subnet_id = aws_subnet.public_subnet_1a.id
+    route_table_id = aws_route_table.public_route_table.id
+ }
+
+ resource "aws_route_table_association" "public_subnet_1a" {
+    subnet_id = aws_subnet.public_subnet_1a.id
+    route_table_id = aws_route_table.public_route_table.id
+ }
+
+ # Private Route Table Associations
+
+ resource "aws_route_table_association" "private_subnet_1a" {
+    subnet_id = aws_subnet.public_subnet_1a.id
+    route_table_id = aws_route_table.public_route_table.id
+ }
+
+ resource "aws_route_table_association" "private_subnet_1a" {
+    subnet_id = aws_subnet.public_subnet_1a.id
+    route_table_id = aws_route_table.public_route_table.id
+ }
+
+ resource "aws_route_table_association" "private_subnet_1a" {
+    subnet_id = aws_subnet.public_subnet_1a.id
+    route_table_id = aws_route_table.public_route_table.id
+ }
+
+
 
 
 
