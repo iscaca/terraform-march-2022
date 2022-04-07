@@ -12,7 +12,7 @@ resource "aws_security_group_rule" "ingress_ssh" {
   to_port           = element(var.ec2_inbound_rules, count.index)
   protocol          = "tcp"
   cidr_blocks       = [element(var.ec2_inbound_rules_cidr, count.index)]              
-  security_group_id = aws_security_group.my_sg.id                                    
+  security_group_id = aws_security_group.my_sg1.id                                    
 
 }
 
@@ -22,6 +22,6 @@ resource "aws_security_group_rule" "egress" {
   to_port           = 0
   protocol          = "-1"
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.my_sg.id
+  security_group_id = aws_security_group.my_sg1.id
 
 }
