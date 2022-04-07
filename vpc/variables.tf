@@ -34,12 +34,12 @@ variable "availability_zones" {
 
 variable "aws_route_table_association"{
     type = list(string)
-    decription = "This is list of public subnets"
+    description = "This is list of public subnets"
     default = ["public_subnet_1a", "public_subnet_1b", "public_subnet_1c"]
 }
 
 variable "aws_route_table_association"{
     type = list(string)
-    decription = "This is list of public subnets"
+    description = "This is list of public subnets"
     default = ["private_subnet_1a", "private_subnet_1b", "private_subnet_1c"]
 }
