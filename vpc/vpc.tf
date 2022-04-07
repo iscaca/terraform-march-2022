@@ -85,7 +85,7 @@ resource "aws_eip" "nat_gw_eip" {
     route_table_id = aws_route_table.public_route_table.id
  }
 
- resource "aws_route_table_association" "public_subnet_1a" {
+ resource "aws_route_table_association" "public_subnet_1c" {
     subnet_id = aws_subnet.public_subnet_1a.id
     route_table_id = aws_route_table.public_route_table.id
  }
@@ -97,12 +97,12 @@ resource "aws_eip" "nat_gw_eip" {
     route_table_id = aws_route_table.public_route_table.id
  }
 
- resource "aws_route_table_association" "private_subnet_1a" {
+ resource "aws_route_table_association" "private_subnet_1b" {
     subnet_id = aws_subnet.public_subnet_1a.id
     route_table_id = aws_route_table.public_route_table.id
  }
 
- resource "aws_route_table_association" "private_subnet_1a" {
+ resource "aws_route_table_association" "private_subnet_1c" {
     subnet_id = aws_subnet.public_subnet_1a.id
     route_table_id = aws_route_table.public_route_table.id
  }
