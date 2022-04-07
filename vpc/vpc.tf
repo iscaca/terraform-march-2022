@@ -6,6 +6,7 @@ resource "aws_vpc" "my_own_vpc" {
     tags = {
         Name = "my_own_vpc"
         Environment = "dev"
+        Project = "VPC"
     }
 }
 
@@ -17,6 +18,7 @@ resource "aws_internet_gateway" "my_internet_gateway" {
   tags = {
     Name = "my_internet_gateway"
     Environment = "dev"
+    Project = "VPC"
   }
 }
 
@@ -32,6 +34,7 @@ resource "aws_route_table" "public_route_table" {
   tags = {
     Name = "Public_Route_Table"
     Environment = "dev"
+    Project = "VPC"
   }
 }
 
@@ -47,6 +50,7 @@ resource "aws_route_table" "private_route_table" {
   tags = {
     Name = "Private_Route_Table"
     Environment = "dev"
+    Project = "VPC"
   }
 }
 
@@ -59,6 +63,7 @@ resource "aws_nat_gateway" "my_nat_gateway" {
   tags = {
     Name = "my_nat_gateway"
     Environment = "dev"
+    Project = "VPC"
   }
 }
 
@@ -69,6 +74,7 @@ resource "aws_eip" "nat_gw_eip" {
   tags = {
     Name = "nat_gw_eip"
     Environment= "dev"
+    Project = "VPC"
   }
 }
 
@@ -80,12 +86,12 @@ resource "aws_eip" "nat_gw_eip" {
  }
 
  resource "aws_route_table_association" "public_subnet_1b" {
-    subnet_id = aws_subnet.public_subnet_1a.id
+    subnet_id = aws_subnet.public_subnet_1b.id
     route_table_id = aws_route_table.public_route_table.id
  }
 
  resource "aws_route_table_association" "public_subnet_1c" {
-    subnet_id = aws_subnet.public_subnet_1a.id
+    subnet_id = aws_subnet.public_subnet_1c.id
     route_table_id = aws_route_table.public_route_table.id
  }
 
@@ -97,12 +103,12 @@ resource "aws_eip" "nat_gw_eip" {
  }
 
  resource "aws_route_table_association" "private_subnet_1b" {
-    subnet_id = aws_subnet.public_subnet_1a.id
+    subnet_id = aws_subnet.public_subnet_1b.id
     route_table_id = aws_route_table.public_route_table.id
  }
 
  resource "aws_route_table_association" "private_subnet_1c" {
-    subnet_id = aws_subnet.public_subnet_1a.id
+    subnet_id = aws_subnet.public_subnet_1c.id
     route_table_id = aws_route_table.public_route_table.id
  }
 

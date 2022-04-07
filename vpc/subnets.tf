@@ -6,6 +6,8 @@ resource "aws_subnet" "public_subnet_1a" {
   availability_zone = var.availability_zones[0]
   tags = {
     Name = "Public_Subnet_1a"
+    Environment = "dev"
+    Project = "VPC"
   }
 }
 
@@ -16,6 +18,7 @@ resource "aws_subnet" "public_subnet_1b" {
   tags = {
     Name = "Public_Subnet_1b"
     Environment = "dev"
+    Project = "VPC"
   }
 }
 
@@ -26,6 +29,7 @@ resource "aws_subnet" "public_subnet_1c" {
   tags = {
     Name = "Public_Subnet_1c"
     Environment = "dev"
+    Project = "VPC"
   }
 }
 
@@ -38,6 +42,7 @@ resource "aws_subnet" "private_subnet_1a" {
   tags = {
     Name = "Private_Subnet_1a"
     Environment = "dev"
+    Project = "VPC"
      }
 }
 
@@ -48,6 +53,7 @@ resource "aws_subnet" "private_subnet_1b" {
   tags = {
     Name = "Private_Subnet_1b"
     Environment = "dev"
+    Project = "VPC"
   }
 }
 
@@ -58,5 +64,6 @@ resource "aws_subnet" "private_subnet_1c" {
   tags = {
     Name = "Private_Subnet_1c"
     Environment = "dev"
+    Project = "VPC"
   }
 }
