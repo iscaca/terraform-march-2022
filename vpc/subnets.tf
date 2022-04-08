@@ -1,69 +1,50 @@
 # Public Subnets
- # count
-resource "aws_subnet" "public_subnet_1a" {
+
+resource "aws_subnet" "public_subnet" {
+  count = length(var.subnet_azs)
+
   vpc_id     = aws_vpc.my_own_vpc.id
-  cidr_block = var.cidr_block_pub[0]
-  availability_zone = var.availability_zones[0]
-  tags = {
-    Name = "Public_Subnet_1a"
-    Environment = "dev"
-    Project = "VPC"
-  }
+  cidr_block = element(var.cidr_block_pub, count.index)
+  availability_zone = element(var.subnet_azs, count.index)
+  tags = merge(
+    var.tags,{
+      Name = "public_subnet_${count.index}"
+    }
+  )
 }
 
-resource "aws_subnet" "public_subnet_1b" {
-  vpc_id     = aws_vpc.my_own_vpc.id
-  cidr_block = var.cidr_block_pub[1]
-  availability_zone = var.availability_zones[1]
-  tags = {
-    Name = "Public_Subnet_1b"
-    Environment = "dev"
-    Project = "VPC"
-  }
-}
-
-resource "aws_subnet" "public_subnet_1c" {
-  vpc_id     = aws_vpc.my_own_vpc.id
-  cidr_block = var.cidr_block_pub[2]
-  availability_zone = var.availability_zones[2]
-  tags = {
-    Name = "Public_Subnet_1c"
-    Environment = "dev"
-    Project = "VPC"
-  }
-}
 
 # Private Subnets
 
-resource "aws_subnet" "private_subnet_1a" {
+resource "aws_subnet" "private_subnet" {
+  count = length(var.subnet_azs)
+
   vpc_id     = aws_vpc.my_own_vpc.id
-  cidr_block = var.cidr_block_pri[0]
-  availability_zone = var.availability_zones[0]
-  tags = {
-    Name = "Private_Subnet_1a"
-    Environment = "dev"
-    Project = "VPC"
-     }
+  cidr_block = element(var.cidr_block_pri, count.index)
+  availability_zone = element(var.subnet_azs, count.index)
+  tags = merge(
+    var.tags,{
+      Name = "private_subnet_${count.index}"
+    }
+  )
 }
 
-resource "aws_subnet" "private_subnet_1b" {
-  vpc_id     = aws_vpc.my_own_vpc.id
-  cidr_block = var.cidr_block_pri[1]
-  availability_zone = var.availability_zones[1]
-  tags = {
-    Name = "Private_Subnet_1b"
-    Environment = "dev"
-    Project = "VPC"
-  }
-}
 
-resource "aws_subnet" "private_subnet_1c" {
-  vpc_id     = aws_vpc.my_own_vpc.id
-  cidr_block = var.cidr_block_pri[2]
-  availability_zone = var.availability_zones[2]
-  tags = {
-    Name = "Private_Subnet_1c"
-    Environment = "dev"
-    Project = "VPC"
-  }
-}
+# Public Route Table Associations
+
+ resource "aws_route_table_association" "public" {
+   count = length(var.subnet_azs)
+
+    subnet_id = element(aws_subnet.public_subnet.*.id, count.index)
+    route_table_id = element(aws_route_table.public_route_table.id, count.index)
+ }
+
+
+ # Private Route Table Associations
+
+ resource "aws_route_table_association" "private" {
+   count = length(var.subnet_azs)
+
+    subnet_id = element(aws_subnet.private_subnet.*.id, count.index)
+    route_table_id = element(aws_route_table.private_route_table.id, count.index)
+ }
