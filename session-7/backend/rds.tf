@@ -44,3 +44,28 @@ resource "aws_db_instance" "wordpress" {
 // prod
 // skip_final_snapshot = false
 // final_snapshot_identifier = prod-db-snapshot
+
+
+// Every company has naming convention for the resources
+// 1. Naming standart and tagging standard
+// Naming Standard
+//1. What Cloud Provider = aws
+//2. What is the environment = non-prod, prod
+//3. What is the region = us-east-1, us-west-1
+//4. What is the specific  env=dev, qa, stage
+//5. What is the project ? = matrix
+
+# Standard = aws-nonprod-us-west-2-dev-matrix-${resource}
+
+
+// Tagging Standard (Common Tags)
+
+#1. environment
+#2. project
+#3. team
+#4. owner
+#5. menaged by = Terraform
+
+// locals {
+//name = "aws-${var.stage}-${var.region}-${var.env}-${var.project}-ismail"
+//common_tags = {
