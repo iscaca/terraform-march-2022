@@ -12,7 +12,7 @@ resource "aws_instance" "main_ec2"{
     instance_type = var.instance_type
     tags = merge(
         var.tags,{
-            Name = "first_ec2"
+            Name = "Wordpress-Web"
         }
     )
     subnet_id = aws_subnet.public_subnet[0].id
