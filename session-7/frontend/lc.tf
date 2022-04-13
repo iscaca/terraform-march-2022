@@ -14,7 +14,7 @@ resource "aws_launch_configuration" "as_conf" {
   security_groups = [var.default_sg]
   key_name = aws_key_pair.terraform_server_key.key_name 
       
-  tags = replace( local.name, "rtype", "LC")
+
       
   
 }
