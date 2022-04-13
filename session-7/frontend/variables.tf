@@ -17,7 +17,7 @@ variable "ami" {
 }
 variable "default_sg"{
     type = string
-    description = "This is default sg of us-east-1"
+    description = "This is default sg in us-east-1"
     default = "sg-09ee93d7596252b26"
 }
 
