@@ -45,7 +45,7 @@ variable "project" {
 
 variable "subnet_id"{
     type = list(string)
-    default = ["subnet-0ef2807a98153fa38","usubnet-00b327427253aaa38","subnet-0e4c256aceb55824e"]
+    default = ["subnet-0ef2807a98153fa38","subnet-00b327427253aaa38","subnet-0e4c256aceb55824e"]
 }
 
 
