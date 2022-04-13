@@ -6,6 +6,6 @@ resource "aws_autoscaling_group" "frontend_asg" {
   launch_configuration = aws_launch_configuration.as_conf.name
   vpc_zone_identifier  = var.subnet_id
  
-  Name = replace( local.name, "rtype", "ASG")
+  tags = replace( local.name, "rtype", "ASG")
      
 }
