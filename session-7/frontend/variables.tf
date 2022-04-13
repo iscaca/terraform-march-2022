@@ -15,11 +15,6 @@ variable "ami" {
     description = "Image ID for EC2 Instance"
     default = "ami-0c02fb55956c7d316"
 }
-variable "default_sg"{
-    type = string
-    description = "This is default sg in us-east-1"
-    default = "sg-09ee93d7596252b26"
-}
 
 
 variable "stage" {
