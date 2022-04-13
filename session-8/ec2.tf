@@ -7,4 +7,5 @@ resource "aws_instance" "my_ec2" {
     Tags = local.comman_tags                              
   }
   vpc_security_group_ids = [aws_security_group.my_sg.id]
+  user_data = file("user_data.sh")
 }
