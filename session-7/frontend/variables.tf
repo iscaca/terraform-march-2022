@@ -22,7 +22,7 @@ variable "default_sg"{
 }
 
 
-variabe "stage"{
+variable "stage" {
     type = string
     default = "prod"
 }
