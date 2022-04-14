@@ -16,6 +16,7 @@ resource "aws_instance" "my_ec2" {
       host = self.public_ip
       private_key = file("~/.ssh/id_rsa")                   # Private key of my terraform server
     }
+  }
     
     # Remote exec
   provisioner "remote_exec" {                                # Even in the company, engineers do not run userdata, instead  they run CloudInit
@@ -35,7 +36,7 @@ resource "aws_instance" "my_ec2" {
     }
 
   
-  }
+  
 
   tags = merge( local.common_tags, {
     Name = replace(local.name, "rtype","ec2")  } 
