@@ -2,12 +2,13 @@ resource "aws_security_group" "my_sg" {
   name        = replace(local.name, "rtype", "web-sg")
   description = "This is a test Security group"
   vpc_id      = "vpc-0f3d383f1ed7b8f53"
-  tags = {
-      Name = replace(local.name, "rtype","web-sg")
-      Tags = local.comman_tags  
-  }
+  
+  tags = merge (
+    local.comman_tags, { Name = replace(local.name, "rtype","web-sg") }
+    )
 
 }
+
 
 resource "aws_security_group_rule" "ingress_ssh" {
   count = length(var.ec2_inbound_rules)                                              
