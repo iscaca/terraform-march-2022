@@ -9,7 +9,7 @@ resource "aws_autoscaling_group" "frontend_asg" {
   tags = merge(
   local.common_tags,
    {Name = replace(local.name, "rtype", "ASG"),
-   "PropagateAtLaunch": true,
+   PropagateAtLaunch = true
    }
   
   )
