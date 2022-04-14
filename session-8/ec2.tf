@@ -18,7 +18,7 @@ resource "aws_instance" "my_ec2" {
     }
     
     # Remote exec
-    provisioner "remote_exec"{                                # Even in the company, engineers do not run userdata, instead  they run "CloudInit"
+    provisioner "remote_exec" {                                # Even in the company, engineers do not run userdata, instead  they run "CloudInit"
       inline = [
         "sudo yum install httpd -y",
         "sudo systemctl start httpd",
