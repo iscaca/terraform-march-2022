@@ -11,7 +11,7 @@ resource "aws_launch_configuration" "as_conf" {
   image_id      = data.aws_ami.amazon_linux_2.id
   instance_type = var.instance_type
   user_data = file("user_data.sh")
-  security_groups = [var.default_sg]
+  security_groups = [var.aws_security_group.my_sg]
   key_name = aws_key_pair.terraform_server_key.key_name
 
   tags = merge(local.common_tags, 
