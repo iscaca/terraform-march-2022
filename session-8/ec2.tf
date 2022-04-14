@@ -5,6 +5,7 @@ resource "aws_instance" "my_ec2" {
   vpc_security_group_ids = [aws_security_group.my_sg.id]
   key_name = aws_key_pair.terraform_server.key_name
 
+# File Provisoner
   provisioner "file" {
     source = "/home/ec2-user/terraform-march-2022/session-8/index.html"
     destination = "/tmp/index.html"
@@ -15,6 +16,24 @@ resource "aws_instance" "my_ec2" {
       host = self.public_ip
       private_key = file("~/.ssh/id_rsa")                   # Private key of my terraform server
     }
+    
+    # Remote exec
+    provisinoer "remote_exec"{                                # Even in the company, engineers do not run userdata, instead  they run "CloudInit"
+      inline = [
+        "sudo yum install httpd -y",
+        "sudo systemctl start httpd",
+        "sudo sytemctl enable httpd",
+        "sudo cp /tmp/index.html /var/www/html/index.html"
+      ]
+    connection {
+      type = "ssh"
+      user = "ec2-user"
+      host = self.public_ip
+      private_key = file("~/.ssh/id_rsa")                   # Private key of my terraform server
+    }
+
+    }
+
   
   }
 
