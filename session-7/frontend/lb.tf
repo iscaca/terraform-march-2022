@@ -10,7 +10,7 @@ resource "aws_lb_target_group" "lb_tg"{
 
 
 
-resource "aws_autoscaling_attachment" "terramino" {
+resource "aws_autoscaling_attachment" "lb_tg" {
   autoscaling_group_name = aws_autoscaling_group.lb_tg.id
   alb_target_group_arn   = aws_lb_target_group.lb_tg.arn
 }
