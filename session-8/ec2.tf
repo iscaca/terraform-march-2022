@@ -5,7 +5,7 @@ resource "aws_instance" "my_ec2" {
   vpc_security_group_ids = [aws_security_group.my_sg.id]
   user_data = file("user_data.sh")
 
-  tags = merge( local.comman_tags, {
+  tags = merge( local.common_tags, {
     Name = replace(local.name, "rtype","ec2")  } 
     )
 }
