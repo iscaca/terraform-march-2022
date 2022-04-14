@@ -1,5 +1,5 @@
 resource "aws_autoscaling_group" "frontend_asg" {
-  name                 = "test_asg"
+  name                 = "test-asg"
   min_size             = 1
   max_size             = 3
   desired_capacity     = 3
