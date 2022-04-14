@@ -9,7 +9,7 @@ resource "aws_autoscaling_group" "frontend_asg" {
   
   tags = merge (
     local.common_tags, { propagate_at_lunch = true,
-      Name = replace(local.name, "rtype", "web-ec2") 
+      Name = replace(local.name, "rtype", "ASG") 
       } 
       
       )
