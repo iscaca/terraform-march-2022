@@ -12,7 +12,11 @@ resource "aws_launch_configuration" "as_conf" {
   instance_type = var.instance_type
   user_data = file("user_data.sh")
   security_groups = [var.default_sg]
-  key_name = aws_key_pair.terraform_server_key.key_name 
+  key_name = aws_key_pair.terraform_server_key.key_name
+
+  tags = merge(local.common_tags, 
+  { Name = replace(local.name, "rtype", "LC") } )
+
       
 
       
