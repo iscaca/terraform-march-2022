@@ -5,12 +5,9 @@ resource "aws_autoscaling_group" "frontend_asg" {
   desired_capacity     = 3
   launch_configuration = aws_launch_configuration.as_conf.name
   vpc_zone_identifier  = var.subnet_id
- 
-  tags = {
+  tag = ["local.common_tags", replace(local.name, "rtype", "ASG")]
       
-      tag = local.common_tags
-      Name = replace(local.name, "rtype", "ASG") 
       
-  }
+  
      
 }
