@@ -4,18 +4,8 @@ resource "aws_lb_target_group" "lb_tg"{
     port               = 80
     protocol           = "HTTP"
     target_type        = "instance"
-    
-   
-}
 
-
-
-resource "aws_autoscaling_attachment" "lb_tg" {
-  autoscaling_group_name = aws_autoscaling_group.lb_tg.id
-  alb_target_group_arn   = aws_lb_target_group.lb_tg.arn
-}
-
-
+    }
 
 # LOAD BALANCER
 resource "aws_lb" "app_lb"{
@@ -24,5 +14,13 @@ resource "aws_lb" "app_lb"{
     load_balancer_type = "application"
     security_groups    = [aws_security_group.my_sg.id]
     subnets            = var.subnet_id
+
+listener {
+    instance_port     = 80
+    instance_protocal = "http"
+    lb_port           = 80
+    lb_protocal       = "http"
+}
+
 
 }

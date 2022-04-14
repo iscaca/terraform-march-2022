@@ -7,7 +7,12 @@ resource "aws_autoscaling_group" "frontend_asg" {
   vpc_zone_identifier  = var.subnet_id
   
   
-  
+  tag = merge (
+    local.common_tags, { propagate_at_lunch = true,
+      Name = replace(local.name, "rtype", "web-ec2") 
+      } 
+      
+      )
   
       
   
