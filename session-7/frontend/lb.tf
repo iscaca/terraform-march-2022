@@ -15,12 +15,7 @@ resource "aws_lb" "app_lb"{
     security_groups    = [aws_security_group.my_sg.id]
     subnets            = var.subnet_id
 
-listener {
-    instance_port     = 80
-    instance_protocal = "http"
-    lb_port           = 80
-    lb_protocal       = "http"
-}
+
 
 
 }
