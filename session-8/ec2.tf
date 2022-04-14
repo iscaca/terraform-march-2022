@@ -47,3 +47,10 @@ resource "aws_key_pair" "terraform_server"{
     key_name = replace(local.name, "rtype", "terraform_server_key")
     public_key = file("~/.ssh/id_rsa.pub")
 }
+
+resource "null_resource" "local_script"{
+  provisioner "local_exec" {
+    command = "touch test.file"
+  
+  }
+}
