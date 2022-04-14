@@ -1,7 +1,7 @@
 variable "ec2_inbound_rules"{
     type = list(string)
     description = "A list of ports for inbound rule"
-    default = ["22", "80", "443"]
+    default = [ "80", "443"]
 }
 
 variable "instance_type" {

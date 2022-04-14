@@ -1,3 +1,5 @@
+# application load balancer security group
+
 resource "aws_security_group" "my_sg" {
   name        = "SecurityGroup"
   description = "This is a test Security group"
@@ -25,3 +27,4 @@ resource "aws_security_group_rule" "egress" {
   security_group_id = aws_security_group.my_sg.id
 
 }
+
