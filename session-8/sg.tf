@@ -10,8 +10,7 @@ resource "aws_security_group" "my_sg" {
 }
 
 
-resource "aws_security_group_rule" "ingress_ssh" {
-  count = length(var.ec2_inbound_rules)                                              
+resource "aws_security_group_rule" "ingress_ssh" {                                             
   type              = "ingress"
   from_port         = 22                 
   to_port           = 22
@@ -21,8 +20,7 @@ resource "aws_security_group_rule" "ingress_ssh" {
 
 }
 
-resource "aws_security_group_rule" "ingress_web" {
-  count = length(var.ec2_inbound_rules)                                              
+resource "aws_security_group_rule" "ingress_web" {                                            
   type              = "ingress"
   from_port         = 80          
   to_port           = 80
