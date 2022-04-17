@@ -8,3 +8,9 @@ module "ec2" {
     env = "qa"
     project = "app-1"
 }
+
+module "s3" {
+    source = "../../modules/s3"
+    env = "qa"
+  
+}
