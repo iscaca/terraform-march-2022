@@ -7,7 +7,7 @@ module "ec2" {
     instance_type = "t2.micro"
     env = "dev"
     project = "app-1"
-    s3_bucket_name = ""
+    s3_bucket_name = module.s3.s3_bucket_name
 }
 
 module "s3" {
@@ -18,4 +18,7 @@ module "s3" {
 
 
 # Reference to Resource = first_label.second_label.attiribute
-# Reference to Module   =
+# Reference to Module   = ?
+
+
+// Whenever you reference to Module, it reference to outputs directly 
