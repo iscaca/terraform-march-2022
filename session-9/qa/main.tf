@@ -7,6 +7,8 @@ module "ec2" {
     instance_type = "t2.micro"
     env = "qa"
     project = "app-1"
+    s3_bucket_name = module.s3.s3_bucket_name
+
 }
 
 module "s3" {
