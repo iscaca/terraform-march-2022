@@ -36,6 +36,7 @@ module "ec2" {
     ami = "ami-0c02fb55956c7d316"
     instance_type = "t2.micro"
     project = "application"
+    security_group_ids = [module.sg.security_group_id]
 
 
 }
