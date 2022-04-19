@@ -31,7 +31,7 @@ module "s3" {
 }
 
 module "ec2" {
-    source = "github.com/aKumoSolutions/terraform-march-2022//modules/ec2?ref=v1.1.0"
+    source = "github.com/aKumoSolutions/terraform-march-2022//modules/ec2"
     env = "dev"
     ami = "ami-0c02fb55956c7d316"
     instance_type = "t2.micro"
